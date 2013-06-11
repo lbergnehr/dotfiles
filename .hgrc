@@ -1,0 +1,8 @@
+
+[ui]
+username = Leo Bergnéhr <leo@bergnehr.se>
+
+[extensions]
+hgext.bookmarks =
+hggit =
+graphlog =
