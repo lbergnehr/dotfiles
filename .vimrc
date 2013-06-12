@@ -25,7 +25,7 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 
 " Increase the history
-set history = 1000
+set history=1000
 
 " Enable filetype plugins
 filetype plugin on
