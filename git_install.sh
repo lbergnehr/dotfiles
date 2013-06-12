@@ -22,7 +22,7 @@ echo Installing Leo\'s dotfiles through git and symbolic links for $user...
 
 # Clone the repository to the user directory
 echo Cloning dotfiles repository...
-targetDir=${1:=/Users/${user}/dotfiles}
+targetDir=${1:=/Users/leo/dotfiles}
 if !( git clone git@github.com:lbergnehr/dotfiles.git $targetDir ); then
   echo Could not clone repository
   echo Aborting installation
