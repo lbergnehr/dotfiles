@@ -2,13 +2,15 @@
 " Inspired by @amix's dito
 
 " ==============================================================================
-" Backage manager (Vundle)
+" Package manager (Vundle)
 " ==============================================================================
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Let Vundle manage Vundle (required)!
 Bundle 'gmarik/vundle'
+
+" Plugins
 Bundle 'surround.vim'
 
 " ==============================================================================
@@ -24,16 +26,6 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-
-" Increase the history
-set history=1000
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Refresh changed files
-set autoread
 
 " Remap leader to ','
 let mapleader = ","
@@ -53,7 +45,17 @@ vnoremap <tab> %
 " ==============================================================================
 " Settings
 " ==============================================================================
-" Some sercurity eploit I read about
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Refresh changed files
+set autoread
+
+" Increase the history
+set history=1000
+
+" Some sercurity exploit I read about...
 set modelines=0
 
 " Create undo file so that we get undoing after closing/opening a file
@@ -62,9 +64,6 @@ set undofile
 " Global search replae by default
 set gdefault
 
-" ==============================================================================
-" User interface
-" ==============================================================================
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
@@ -80,19 +79,16 @@ set cmdheight=2
 " Hide buffers that are closed isntead of abandoning them... poor buffers
 set hid
 
-" Configure backspace so it acts as it should act
+" Configure backspace so it acts as it should act, namely removing all stuff when used
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 " Ignore case when searching
 set ignorecase
-
 " When searching try to be smart about cases 
 set smartcase
-
 " Highlight search results (but rememer that <leader><cr> will remove hl
 set hlsearch
-
 " Makes search act like search in modern browsers
 set incsearch
 
