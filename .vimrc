@@ -9,6 +9,7 @@ call vundle#rc()
 
 " Let Vundle manage Vundle (required)!
 Bundle 'gmarik/vundle'
+Bundle 'surround.vim'
 
 " ==============================================================================
 " Remaps
@@ -41,7 +42,25 @@ let g:mapleader = ","
 " Use it for saving
 nmap <leader>w :w!<cr>
 
+" Fix all those typos...
 :command Q q
+:command WQ wq
+
+" Make tab jump between matching brackets
+nnoremap <tab> %
+vnoremap <tab> %
+
+" ==============================================================================
+" Settings
+" ==============================================================================
+" Some sercurity eploit I read about
+set modelines=0
+
+" Create undo file so that we get undoing after closing/opening a file
+set undofile
+
+" Global search replae by default
+set gdefault
 
 " ==============================================================================
 " User interface
@@ -118,7 +137,6 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
- 
 " ==============================================================================
 " Files, backups and undo
 " ==============================================================================
@@ -126,7 +144,6 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-
 
 " ==============================================================================
 " Text, tab and indent related
@@ -157,7 +174,6 @@ set wrap "Wrap lines
 " Super useful! From an idea by Michael Nauman
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
-
 
 " ==============================================================================
 " Moving around, tabs, windows and buffers
@@ -209,6 +225,8 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
+" Quicky open a new window and switch over to it
+nnoremap <leader>w <C-w>v<C-w>l
 
 " ==============================================================================
 " Status line
@@ -218,7 +236,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
 
 " ==============================================================================
 " Editing mappings
@@ -247,7 +264,6 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
 
 " ==============================================================================
 " vimgrep searching and cope displaying
@@ -280,7 +296,6 @@ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-
 " ==============================================================================
 " Spell checking
 " ==============================================================================
@@ -293,7 +308,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-
 " ==============================================================================
 " Misc
 " ==============================================================================
@@ -305,7 +319,6 @@ map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
 
 " ==============================================================================
 " Helper functions
