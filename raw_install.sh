@@ -14,7 +14,7 @@ echo Installing Leo\'s dotfiles for `whoami`...
 
 urlRoot=https://raw.github.com/lbergnehr/dotfiles/master/
 
-for f in .gitconfig .hgrc .vimrc .zshrc; do
+for f in .gitconfig .hgrc .vimrc .zshrc .tmux.conf; do
   # There might an empty string from that list...
   if [ "$f" = "" ]; then
     continue

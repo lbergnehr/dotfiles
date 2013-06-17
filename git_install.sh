@@ -33,7 +33,7 @@ if !( git clone git@github.com:lbergnehr/${targetDir}.git ); then
 fi
 
 # Loop over all dotfiles
-for f in .gitconfig .hgrc .vimrc .zshrc; do
+for f in .gitconfig .hgrc .vimrc .zshrc .tmux.conf; do
   # There might be an empty string from that list...
   if [ "$f" = "" ]; then
     continue
