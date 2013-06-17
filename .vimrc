@@ -12,6 +12,8 @@ Bundle 'gmarik/vundle'
 
 " Plugins
 Bundle 'surround.vim'
+Bundle 'Solarized'
+Bundle 'molokai'
 
 " ==============================================================================
 " Remaps
@@ -37,15 +39,22 @@ nmap <leader>w :w!<cr>
 " Fix all those typos...
 :command Q q
 :command WQ wq
+:command Wq wq
 
 " Make tab jump between matching brackets
 nnoremap <tab> %
 vnoremap <tab> %
 
+" Change the meaning of ' and ` since ` is easier to reach and used more often
+nnoremap ' `
+vnoremap ' `
+nnoremap ` '
+vnoremap ` '
+
 " ==============================================================================
 " Settings
 " ==============================================================================
-" Enable filetype plugins
+" Enable file type plugins
 filetype plugin on
 filetype indent on
 
@@ -55,13 +64,10 @@ set autoread
 " Increase the history
 set history=1000
 
-" Some sercurity exploit I read about...
+" Some security exploit I read about...
 set modelines=0
 
-" Create undo file so that we get undoing after closing/opening a file
-set undofile
-
-" Global search replae by default
+" Global search replace by default
 set gdefault
 
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -76,7 +82,7 @@ set ruler
 " Height of the command bar
 set cmdheight=2
 
-" Hide buffers that are closed isntead of abandoning them... poor buffers
+" Hide buffers that are closed instead of abandoning them... poor buffers
 set hid
 
 " Configure backspace so it acts as it should act, namely removing all stuff when used
@@ -114,17 +120,16 @@ set tm=500
 " ==============================================================================
 " Enable syntax highlighting
 syntax enable
-
-colorscheme desert
 set background=dark
+colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-    set guifont=Menlo_Regular:h15
+  set guioptions-=T
+  set guioptions+=e
+  set t_Co=256
+  set guitablabel=%M\ %t
+  set guifont=Menlo_Regular:h15
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -215,9 +220,9 @@ endtry
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -320,58 +325,58 @@ map <leader>pp :setlocal paste!<cr>
 " Helper functions
 " ==============================================================================
 function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
 endfunction
 
 function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
+  let l:saved_reg = @"
+  execute "normal! vgvy"
 
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  endif
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
+  let @/ = l:pattern
+  let @" = l:saved_reg
 endfunction
 
 
 " Returns true if paste mode is enabled
 function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
+  if &paste
+    return 'PASTE MODE  '
+  en
+  return ''
 endfunction
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr("%")
+  let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+  if buflisted(l:alternateBufNum)
+    buffer #
+  else
+    bnext
+  endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+  if bufnr("%") == l:currentBufNum
+    new
+  endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+  if buflisted(l:currentBufNum)
+    execute("bdelete! ".l:currentBufNum)
+  endif
 endfunction
