@@ -13,6 +13,7 @@ Bundle 'gmarik/vundle'
 " Plugins
 Bundle 'surround.vim'
 Bundle 'Solarized'
+Bundle 'ZenCoding.vim'
 
 " ==============================================================================
 " Remaps
