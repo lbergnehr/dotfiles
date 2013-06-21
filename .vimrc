@@ -4,17 +4,21 @@
 " ==============================================================================
 " Package manager (Vundle)
 " ==============================================================================
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+try
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
 
-" Let Vundle manage Vundle (required)!
-Bundle 'gmarik/vundle'
+  " Let Vundle manage Vundle (required)!
+  Bundle 'gmarik/vundle'
 
-" Plugins
-Bundle 'surround.vim'
-Bundle 'Solarized'
-Bundle 'ZenCoding.vim'
-Bundle 'scrooloose/nerdtree'
+  " Plugins
+  Bundle 'surround.vim'
+  Bundle 'Solarized'
+  Bundle 'ZenCoding.vim'
+  Bundle 'scrooloose/nerdtree'
+catch
+  echo "Could not load Vundle"
+endtry
 
 " ==============================================================================
 " Remaps
@@ -33,11 +37,6 @@ nnoremap g# g#zz
 " Remap leader to ','
 let mapleader = ","
 let g:mapleader = ","
-
-" Fix all those typos...
-:command Q q
-:command WQ wq
-:command Wq wq
 
 " Make tab jump between matching brackets
 nnoremap <tab> %
@@ -70,11 +69,6 @@ map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -83,7 +77,6 @@ nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
   nmap <D-k> <M-k>
@@ -91,20 +84,6 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
-" ==============================================================================
-" Settings
-" ==============================================================================
-" Enable file type plugins
-filetype plugin on
 filetype indent on
 
 " Refresh changed files
@@ -171,12 +150,23 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " ==============================================================================
+" Auto commands
+" ==============================================================================
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py,*.coffee :call DeleteTrailingWS()
+
+" ==============================================================================
 " Colors and Fonts
 " ==============================================================================
 " Enable syntax highlighting
 syntax enable
 set background=dark
-colorscheme solarized
+silent! colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
