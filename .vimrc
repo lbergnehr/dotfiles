@@ -149,6 +149,12 @@ set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
+" For local replace
+nnoremap gr gd[{V%:s/<C-R>///g<left><left><left>
+
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
 " ==============================================================================
 " Auto commands
 " ==============================================================================
