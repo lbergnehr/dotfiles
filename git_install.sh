@@ -52,7 +52,7 @@ done
 # Install vundle into ~/.vim/bundle
 vundleTargetPath=/Users/${user}/.vim/bundle/vundle
 if [ ! -d "$vundleTargetPath" ]; then
-  ln -s "$targetPath/.vim/bundle/vundle" ~/.vim/bundle/vundle
+  ln -s "$targetPath/.vim/bundle/vundle" /Users/${user}/.vim/bundle/vundle
 fi
 
 echo Installation complete
