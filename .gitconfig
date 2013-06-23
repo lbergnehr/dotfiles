@@ -1,5 +1,9 @@
 [user]
 	name = Leo Bergnéhr
 	email = leo@bergnehr.se
+
 [alias]
 	timeline = log --oneline --graph --decorate
+
+[diff]
+  tool = gvimdiff

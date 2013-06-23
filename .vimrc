@@ -2,7 +2,7 @@
 " Inspired by @amix's dito
 
 " ==============================================================================
-" Package manager (Vundle)
+" *Package manager (Vundle)*
 " ==============================================================================
 try
   " Make sure vundle exists in this path
@@ -19,12 +19,13 @@ try
   Bundle 'scrooloose/nerdtree'
   Bundle "pangloss/vim-javascript"
   Bundle 'loremipsum'
+  Bundle 'abolish.vim'
 catch
   echo "Could not load Vundle"
 endtry
 
 " ==============================================================================
-" Remaps
+" *Remaps*
 " ==============================================================================
 " Remap leader to ','
 let mapleader = ","
@@ -89,11 +90,6 @@ map 0 g0
 map $ g$
 " Remap VIM 0 to first non-blank character
 map 0 ^
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
@@ -107,6 +103,11 @@ if has("mac") || has("macunix")
 endif
 
 " === Buffers / windows / tabs ===
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 " Close all the buffers
@@ -124,7 +125,7 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 
 " ==============================================================================
-" Settings
+" *Settings*
 " ==============================================================================
 " Refresh changed files
 " Remember info about open buffers on close
@@ -167,6 +168,8 @@ set mat=2
 set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+" Show gutter (line numbers)
+set number
 
 " === Searching ===
 " Ignore case when searching
@@ -213,7 +216,7 @@ if has("gui_running")
 endif
 
 " ==============================================================================
-" Auto commands (run when saving file)
+" *Auto commands (run when saving file)*
 " ==============================================================================
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
@@ -230,7 +233,7 @@ autocmd BufReadPost *
       \ endif
 
 " ==============================================================================
-" Helper functions
+" *Helper functions*
 " ==============================================================================
 function! CmdLine(str)
   exe "menu Foo.Bar :" . a:str
