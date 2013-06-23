@@ -16,6 +16,8 @@ try
   Bundle 'Solarized'
   Bundle 'ZenCoding.vim'
   Bundle 'scrooloose/nerdtree'
+  Bundle "pangloss/vim-javascript"
+  Bundle 'loremipsum'
 catch
   echo "Could not load Vundle"
 endtry
@@ -155,6 +157,9 @@ nnoremap gr gd[{V%:s/<C-R>///g<left><left><left>
 " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
+map <leader><C-h> :tabprevious<cr>
+map <leader><C-l> :tabnext<cr>
+
 " ==============================================================================
 " Auto commands
 " ==============================================================================
@@ -209,12 +214,11 @@ set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
-set tw=500
+set tw=0
 
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-
 
 " ==============================================================================
 " Visual mode related
@@ -227,9 +231,11 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " ==============================================================================
 " Moving around, tabs, windows and buffers
 " ==============================================================================
-" Treat long lines as break lines (useful when moving around in them)
+" Treat visual lines as break lines which is more sane to me
 map j gj
 map k gk
+map 0 g0
+map $ g$
 
 " Disable highlight when <cr> is pressed
 map <silent> <cr> :noh<cr>
@@ -258,13 +264,6 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
