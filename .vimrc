@@ -1,5 +1,5 @@
-" Leo Bergnéhr's .vimrc
-" Inspired by @amix's dito
+" This is Leo Bergnéhr's .vimrc.
+" Use whatever you want for your own.
 
 " ==============================================================================
 " *Package manager (Vundle)*
@@ -262,8 +262,7 @@ function! VisualSelection(direction) range
   let @" = l:saved_reg
 endfunction
 
-
-" Returns true if paste mode is enabled
+" Returns true if paste mode is enabled. (Credit to @amix.)
 function! HasPaste()
   if &paste
     return 'PASTE MODE  '
@@ -305,10 +304,8 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-" ==============================================================================
 " MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion. (credit to @garybernhardt.)
-" ==============================================================================
+" Indent if we're at the beginning of a line. Else, do completion. (Credit to @garybernhardt.)
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
