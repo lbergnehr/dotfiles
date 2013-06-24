@@ -4,7 +4,6 @@
 " ==============================================================================
 " *Package manager (Vundle)*
 " ==============================================================================
-try
   " Make sure vundle exists in this path
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
@@ -13,16 +12,17 @@ try
   Bundle 'gmarik/vundle'
 
   " === Plugins ===
-  Bundle 'surround.vim'
+  " Essential
+  Bundle 'Command-T'
   Bundle 'Solarized'
+  Bundle 'fugitive.vim'
+
+  " Good to have
+  Bundle 'surround.vim'
   Bundle 'ZenCoding.vim'
-  Bundle 'scrooloose/nerdtree'
   Bundle "pangloss/vim-javascript"
   Bundle 'loremipsum'
   Bundle 'abolish.vim'
-catch
-  echo "Could not load Vundle"
-endtry
 
 " ==============================================================================
 " *Remaps*
@@ -204,7 +204,7 @@ set wrap "Wrap lines
 " === Fonts and colors ===
 " Enable syntax highlighting
 syntax enable
-set background=dark
+set background=light
 silent! colorscheme solarized
 " Set extra options when running in GUI mode
 if has("gui_running")
