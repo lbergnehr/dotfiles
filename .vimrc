@@ -127,6 +127,8 @@ nnoremap <leader>w <C-w>v<C-w>l
 " ==============================================================================
 " *Settings*
 " ==============================================================================
+" Hightlight the current line
+set cursorline
 " Refresh changed files
 " Remember info about open buffers on close
 set viminfo^=%
@@ -204,7 +206,7 @@ set wrap "Wrap lines
 " === Fonts and colors ===
 " Enable syntax highlighting
 syntax enable
-set background=light
+set background=dark
 silent! colorscheme solarized
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -212,7 +214,13 @@ if has("gui_running")
   set guioptions+=e
   set t_Co=256
   set guitablabel=%M\ %t
-  set guifont=Menlo_Regular:h15
+
+  if has("mac") || has("macunix")
+    set guifont=Menlo_Regular:h15
+  endif
+  if has("win32")
+    set guifont=Consolas:h14
+  endif
 endif
 
 " ==============================================================================
