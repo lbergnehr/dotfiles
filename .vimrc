@@ -216,7 +216,7 @@ if has("gui_running")
   set guitablabel=%M\ %t
 
   if has("mac") || has("macunix")
-    set guifont=Menlo_Regular:h15
+    set guifont=Menlo_Regular:h14
   endif
   if has("win32")
     set guifont=Consolas:h14
