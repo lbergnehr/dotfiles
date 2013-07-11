@@ -143,8 +143,6 @@ set noswapfile
 set autoread
 " Increase the history
 set history=1000
-" Some security exploit I read about...
-set modelines=0
 " Hide buffers that are closed instead of abandoning them
 set hid
 " Configure backspace so it acts as it should act, namely removing all stuff when used
@@ -158,8 +156,6 @@ set so=5
 set wildmenu
 " Show where we are in the file
 set ruler
-" Height of the command bar
-set cmdheight=2
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 " Show matching brackets when text indicator is over them
@@ -212,7 +208,6 @@ silent! colorscheme solarized
 if has("gui_running")
   set guioptions-=T
   set guioptions+=e
-  set t_Co=256
   set guitablabel=%M\ %t
 
   if has("mac") || has("macunix")

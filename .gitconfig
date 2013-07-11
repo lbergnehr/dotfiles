@@ -6,4 +6,7 @@
 	timeline = log --oneline --graph --decorate
 
 [diff]
-  tool = gvimdiff
+  tool = vimdiff
+
+[difftool]
+  promt = false
