@@ -32,12 +32,16 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial brew cp node npm tmux)
+plugins=(git mercurial brew cp node npm tmux history-substring-search)
+
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=~/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+
+# Vim as editor
+export EDITOR=vim
 
 # Set vi key bindings
 bindkey -v
