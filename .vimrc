@@ -23,6 +23,7 @@
   Bundle "pangloss/vim-javascript"
   Bundle 'loremipsum'
   Bundle 'abolish.vim'
+  Bundle 'vim-stylus'
 
 " ==============================================================================
 " *Remaps*
