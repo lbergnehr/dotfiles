@@ -49,8 +49,6 @@ nnoremap ' `
 vnoremap ' `
 nnoremap ` '
 vnoremap ` '
-" Make it easy to open NERDTree
-nmap <leader>f :NERDTree<cr>
 " Disable highlight when <cr> is pressed
 map <silent> <cr> :noh<cr>
 " Quickly open a buffer for scribble
@@ -220,8 +218,12 @@ if has("gui_running")
 endif
 
 " ==============================================================================
-" *Auto commands (run when saving file)*
+" *Auto commands (run when reading or saving file)*
 " ==============================================================================
+
+" Set noexpandtab for certain file types that are white space sensitive
+autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
+
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
   exe "normal mz"
