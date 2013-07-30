@@ -34,13 +34,6 @@ let g:mapleader = ","
 
 " Map jk to Escape (beats jj any time of day ;))
 imap jk <esc>
-" Make next result in when searching center on the screen
-" nnoremap n nzz
-" nnoremap N Nzz
-" nnoremap * *zz
-" nnoremap # #zz
-" nnoremap g* g*zz
-" nnoremap g# g#zz
 " Make tab jump between matching brackets
 nnoremap <tab> %
 vnoremap <tab> %
@@ -66,12 +59,6 @@ map <leader>sa zg
 map <leader>s? z=
 
 filetype indent on
-
-" For local replace
-nnoremap gr gd[{V%:s/<C-R>///g<left><left><left>
-
-" For global replace
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
 map <leader><C-h> :tabprevious<cr>
 map <leader><C-l> :tabnext<cr>
@@ -122,6 +109,9 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Quicky open a new window and switch over to it
 nnoremap <leader>w <C-w>v<C-w>l
+
+" Automatically close a opening bracket followed by return
+inoremap {<cr> {<cr>}<esc>O
 
 " ==============================================================================
 " *Settings*
