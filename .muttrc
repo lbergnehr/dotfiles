@@ -9,7 +9,6 @@ set postponed="~/mail/postponed/"
 set from="leo@bergnehr.se"  
 set realname="Leo Bergnéhr"  
 set imap_user="leo.bergnehr@gmail.com"  
-#set imap_pass=""
 #My Editor  
 set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'  
 #Folders  
@@ -23,7 +22,6 @@ set message_cachedir =~/.mutt/cache/bodies
 set certificate_file =~/.mutt/certificates  
 #SMTP Setup  
 set smtp_url="smtp://leo.bergnehr@smtp.gmail.com:587/"  
-#set smtp_pass="your gmail password"  
 #Special Keybindings  
 bind editor <space> noop  
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"  
@@ -33,6 +31,11 @@ macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
 #Mutt Session Security  
 set move=no #Stop asking to "move read messages to mbox"!  
 set imap_keepalive=900  
+
+# Sending mail
+set send_charset="utf-8"
+set edit_headers=yes
+
 # Colors  
 color hdrdefault cyan default  
 color attachment yellow default  
@@ -58,3 +61,6 @@ color index   blue default  '~D'        # Deleted Mails - use dark color as thes
 color body  brightred black [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+  
 # identifies URLs  
 color body  brightblue black (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+ 
+
+# Load local things
+source .muttrc_local
