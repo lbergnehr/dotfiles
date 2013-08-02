@@ -138,6 +138,10 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+" No folding
+set nofoldenable
+set foldmethod=manual
+
 " === Appearances ===
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=5
