@@ -211,6 +211,9 @@ if has("gui_running")
   endif
 endif
 
+" Set the "highlighted" text to underlined
+hi Search cterm=underline
+
 " ==============================================================================
 " *Auto commands (run when reading or saving file)*
 " ==============================================================================
