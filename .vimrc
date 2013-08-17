@@ -112,6 +112,11 @@ inoremap {<cr> {<cr>}<esc>O
 " Change between current and secondary files
 map <leader><leader> <C-^>
 
+" Shortcut to dir of current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
 " ==============================================================================
 " *Abbreviations*
 " ==============================================================================
