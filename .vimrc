@@ -113,6 +113,9 @@ nnoremap <leader>w <C-w>v<C-w>l
 " Automatically close a opening bracket followed by return
 inoremap {<cr> {<cr>}<esc>O
 
+" Change between current and secondary files
+map <leader><leader> <C-^>
+
 " ==============================================================================
 " *Settings*
 " ==============================================================================
