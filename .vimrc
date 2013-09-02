@@ -26,7 +26,7 @@
   Bundle 'vim-stylus'
 
 " ==============================================================================
-" *Remaps*
+" *Mappings*
 " ==============================================================================
 " Remap leader to ','
 let mapleader = ","
@@ -113,6 +113,9 @@ map <leader><leader> <C-^>
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
+
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
 
 " ==============================================================================
 " *Abbreviations*
