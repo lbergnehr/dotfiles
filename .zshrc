@@ -32,8 +32,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial brew cp node npm tmux history-substring-search)
-
+plugins=(git mercurial brew cp node npm tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -51,3 +50,5 @@ bindkey -M viins 'jk' vi-cmd-mode
 __git_files () { 
   _wanted files expl 'local files' _files     
 }
+
+bindkey '^h' history-incremental-search-backward
