@@ -231,7 +231,7 @@ hi Search cterm=underline
 
 " Set noexpandtab for certain file types that are white space sensitive
 autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
-autocmd BufRead,BufNewFile *.css,*.html,*.js setlocal iskeyword+=-
+autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl setlocal iskeyword+=-
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
