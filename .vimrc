@@ -128,7 +128,7 @@ iab <expr> dts strftime("%Y-%m-%d %H:%M:%S")
 " *Settings*
 " ==============================================================================
 " Hightlight the current line
-set cursorline
+" set cursorline
 " Refresh changed files
 " Remember info about open buffers on close
 set viminfo^=%
