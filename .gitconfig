@@ -3,7 +3,7 @@
 	email = leo@bergnehr.se
 
 [alias]
-  timeline = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  l = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   st = status
   ci = commit
   co = checkout
@@ -16,6 +16,7 @@
   noff = merge --no-ff
   fa = fetch --all
   pom = push origin master
+  poh = push origin head
   b = branch
   ds = diff --stat=161,120 --color
   dh1 = diff HEAD~1 --color
