@@ -130,6 +130,7 @@ iab <expr> dts strftime("%Y-%m-%d %H:%M:%S")
 " set cursorline
 " Refresh changed files
 " Remember info about open buffers on close
+set clipboard=unnamed
 set viminfo^=%
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
