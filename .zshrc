@@ -53,3 +53,10 @@ __git_files () {
 }
 
 bindkey '^h' history-incremental-search-backward
+
+# Browsa widget to quickly switch folder
+browsa() { 
+  cd $(find * -type d | egrep -v "^\.|/\." | selecta) 
+}
+zle -N browsa
+bindkey '^g' browsa
