@@ -13,7 +13,6 @@
 
   " === Plugins ===
   " Essential
-  Bundle 'Command-T'
   Bundle 'Solarized'
   Bundle 'fugitive.vim'
 
