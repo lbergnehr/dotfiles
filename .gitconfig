@@ -5,7 +5,7 @@
 [alias]
   l = log --graph --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   st = status
-  ci = commit
+  ci = commit -v
   co = checkout
   di = diff --color
   dc = diff --cached --color
@@ -17,7 +17,7 @@
   fa = fetch --all
   pom = push origin master
   poh = push origin head
-  b = branch
+  b = branch --color
   ds = diff --stat=161,120 --color
   dh1 = diff HEAD~1 --color
 
