@@ -61,3 +61,6 @@ browsa() {
 }
 zle -N browsa
 bindkey '^g' browsa
+
+alias edit-git-conflicts="vim -O $(git st -s | grep ^UU | cut -c 4- | xargs)"
+alias beautify-js-files='echo **/*.js | tr " " "\n" | grep -v "moment.js" | while read line; do js-beautify -s 2 -m 2 -r $line; done'
