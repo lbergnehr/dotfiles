@@ -350,3 +350,6 @@ endfunction
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
 nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+
+" js-beautify
+map <leader>bb :%! js-beautify -f - -s 2<cr>
