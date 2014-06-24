@@ -116,6 +116,10 @@ map <leader>v :view %%
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
 
+" Map cnext/cprevious to easier keys
+nmap <c-n> :cnext<cr>
+nmap <c-p> :cprevious<cr>
+
 " ==============================================================================
 " *Abbreviations*
 " ==============================================================================
