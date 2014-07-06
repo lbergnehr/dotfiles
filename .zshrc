@@ -49,15 +49,15 @@ bindkey -v
 bindkey -M viins 'jk' vi-cmd-mode
 
 # Fix to make git autocompletion usable
-__git_files () { 
-  _wanted files expl 'local files' _files     
+__git_files () {
+  _wanted files expl 'local files' _files
 }
 
 bindkey '^h' history-incremental-search-backward
 
 # Browsa widget to quickly switch folder
-browsa() { 
-  cd $(find * -type d | egrep -v "^\.|/\." | selecta) 
+browsa() {
+  cd $(find * -type d | egrep -v "^\.|/\." | selecta)
 }
 zle -N browsa
 bindkey '^g' browsa
