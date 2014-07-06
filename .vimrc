@@ -23,6 +23,7 @@
   Bundle 'loremipsum'
   Bundle 'abolish.vim'
   Bundle 'vim-stylus'
+  Bundle 'bling/vim-airline'
 
 " ==============================================================================
 " *Mappings*
