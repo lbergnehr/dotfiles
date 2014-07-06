@@ -59,6 +59,8 @@ map <leader>sa zg
 map <leader>s? z=
 
 filetype indent on
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 map <leader><C-h> :tabprevious<cr>
 map <leader><C-l> :tabnext<cr>
@@ -334,8 +336,9 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
+
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
+inoremap <s-tab> <c-x><c-o>
 
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
