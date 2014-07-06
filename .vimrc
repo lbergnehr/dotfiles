@@ -123,6 +123,9 @@ imap <c-l> <space>=><space>
 nmap <c-n> :cnext<cr>
 nmap <c-p> :cprevious<cr>
 
+" Easy way to turn line numbers on/off to save space
+nmap <leader>ll :call SwitchLineNumbers()<cr>
+
 " ==============================================================================
 " *Abbreviations*
 " ==============================================================================
@@ -177,8 +180,6 @@ set mat=2
 set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-" Show gutter (line numbers)
-set number
 
 " === Searching ===
 " Ignore case when searching
@@ -361,3 +362,11 @@ nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
 
 " js-beautify
 map <leader>bb mq:%! js-beautify -f - -s 2<cr>'q
+
+function! SwitchLineNumbers()
+  if &number
+    set nonumber
+  else
+    set number
+  endif
+endfunction
