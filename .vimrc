@@ -364,7 +364,8 @@ endfunction
 nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
 
 " js-beautify
-map <leader>bb mq:%! js-beautify -f - -s 2<cr>'q
+nmap <leader>bj mq:%! js-beautify -f - -s 2<cr>'q
+nmap <leader>bh mq:%! js-beautify --type html -f - -s 2<cr>'q
 
 function! SwitchLineNumbers()
   if &number
