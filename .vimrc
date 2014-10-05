@@ -233,6 +233,9 @@ endif
 " Set the "highlighted" text to underlined
 hi Search cterm=underline
 
+" Set better looking characters for `set list`
+set listchars=tab:▸\ ,eol:¬
+
 " ==============================================================================
 " *Auto commands (run when reading or saving file)*
 " ==============================================================================
