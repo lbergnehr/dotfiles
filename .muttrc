@@ -1,34 +1,41 @@
 # Sets up mail box in your home folder  
 set mbox_type=maildir  
 set mbox="~/mail/inbox/"  
-set spoolfile="~/mail/inbox/"  
-set folder="~/mail/"  
 set record="~/mail/sent/"  
 set postponed="~/mail/postponed/"  
-#Gmail account info  
+
+# Gmail account info  
 set from="leo@bergnehr.se"  
 set realname="Leo Bergnéhr"  
 set imap_user="leo.bergnehr@gmail.com"  
-#My Editor  
+
+# My Editor  
 set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'  
-#Folders  
-#Remote Folders  
+
+# Folders  
+# Remote Folders  
 set folder="imaps://imap.gmail.com:993"  
 set spoolfile="+INBOX"  
 set postponed ="+[Gmail]/Drafts"  
-#Local Folders  
+
+# Local Folders  
 set header_cache =~/.mutt/cache/headers  
 set message_cachedir =~/.mutt/cache/bodies  
 set certificate_file =~/.mutt/certificates  
-#SMTP Setup  
+
+# SMTP Setup  
 set smtp_url="smtp://leo.bergnehr@smtp.gmail.com:587/"  
-#Special Keybindings  
+
+# Special Keybindings  
 bind editor <space> noop  
+macro index gg "<first-entry>" "Go to inbox"  
+macro index G "<last-entry>" "Go to inbox"  
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"  
 macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"  
 macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"  
 macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"  
-#Mutt Session Security  
+
+# Mutt Session Security  
 set move=no #Stop asking to "move read messages to mbox"!  
 set imap_keepalive=900  
 
