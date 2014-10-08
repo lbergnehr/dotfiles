@@ -136,8 +136,6 @@ iab <expr> dts strftime("%Y-%m-%d %H:%M:%S")
 " ==============================================================================
 " *Settings*
 " ==============================================================================
-" Hightlight the current line
-" set cursorline
 " Refresh changed files
 " Remember info about open buffers on close
 set clipboard=unnamed
@@ -235,6 +233,13 @@ hi Search cterm=underline
 
 " Set better looking characters for `set list`
 set listchars=tab:▸\ ,eol:¬
+
+" Good settings to improve performance of terminal vim
+let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+set noshowmatch         " Don't match parentheses/brackets
+set nocursorline        " Don't paint cursor line
+set nocursorcolumn      " Don't paint cursor column
+set scrolljump=8        " Scroll 8 lines at a time at bottom/top
 
 " ==============================================================================
 " *Auto commands (run when reading or saving file)*
