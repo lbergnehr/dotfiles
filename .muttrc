@@ -28,12 +28,23 @@ set smtp_url="smtp://leo.bergnehr@smtp.gmail.com:587/"
 
 # Special Keybindings  
 bind editor <space> noop  
-macro index gg "<first-entry>" "Go to inbox"  
-macro index G "<last-entry>" "Go to inbox"  
+
+# Generic
+# Index
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"  
 macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"  
 macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"  
 macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"  
+bind index gg first-entry
+bind index G last-entry
+# Pager
+bind pager j next-line
+bind pager k previous-line
+bind pager l view-attachments
+bind pager gg top
+bind pager G bottom
+# Attach
+bind attach l view-attach
 
 # Mutt Session Security  
 set move=no #Stop asking to "move read messages to mbox"!  
@@ -44,7 +55,23 @@ set send_charset="utf-8"
 set edit_headers=yes
 
 # Load local things
-source .muttrc_local
+source ~/.muttrc_local
 
 # Load colors
-source .mutt_solarized_theme
+source ~/.mutt_solarized_theme
+
+# Status Bar (from Steve Losh)
+set status_chars  = " *%A"
+# No idea what most of this is
+set status_format = "[ Folder: %f ] [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header (from Steve Losh)
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Look for email after three seconds of inactivity
+set timeout = 3
+# Minimum time between email checks
+set mail_check = 0
