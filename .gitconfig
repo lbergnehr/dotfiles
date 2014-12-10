@@ -9,6 +9,7 @@
   ci = commit -v
   co = checkout
   di = diff --color
+  diw = diff --color --word-diff
   dc = diff --cached --color
   amend = commit --amend
   aa = add --all
