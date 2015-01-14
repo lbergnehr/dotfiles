@@ -249,13 +249,6 @@ set scrolljump=8        " Scroll 8 lines at a time at bottom/top
 autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
 autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl setlocal iskeyword+=-
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py,*.coffee :call DeleteTrailingWS()
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
@@ -320,19 +313,6 @@ function! <SID>BufcloseCloseIt()
   if buflisted(l:currentBufNum)
     execute("bdelete! ".l:currentBufNum)
   endif
-endfunction
-
-" Remove all white spaces at the end of lines
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
 endfunction
 
 " MULTIPURPOSE TAB KEY
