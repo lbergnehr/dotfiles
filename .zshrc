@@ -53,7 +53,13 @@ __git_files () {
   _wanted files expl 'local files' _files
 }
 
-bindkey '^h' history-incremental-search-backward
+# Search backwards and forwards with a pattern
+bindkey -M vicmd '/' history-incremental-pattern-search-backward
+bindkey -M vicmd '?' history-incremental-pattern-search-forward
+
+# set up for insert mode too
+bindkey -M viins '^P' history-incremental-pattern-search-backward
+bindkey -M viins '^N' history-incremental-pattern-search-forward
 
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
 # that those keys can be used for other things.
