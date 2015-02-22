@@ -15,10 +15,10 @@
   " Essential
   Bundle 'Solarized'
   Bundle 'fugitive.vim'
+  Bundle 'mattn/emmet-vim'
 
   " Good to have
   Bundle 'surround.vim'
-  Bundle 'ZenCoding.vim'
   Bundle "pangloss/vim-javascript"
   Bundle 'loremipsum'
   Bundle 'abolish.vim'
