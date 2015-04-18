@@ -6,7 +6,7 @@
   l = log --graph --decorate --pretty=format:'%h -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   la = !git l --all
   fshow = !git show $(git l | selecta | tr -d \" *-/|\\\\\" | cut -c 1-7)
-  fdi = !git di $(git l | selecta | tr -d \" *-/|\\\\\" | cut -c 1-7) $(git l | selecta | tr -d \" *-/|\\\\\" | cut -c 1-7)
+  fdi = !git di $(git la | selecta | tr -d \" *-/|\\\\\" | cut -c 1-7) $(git la | selecta | tr -d \" *-/|\\\\\" | cut -c 1-7)
   st = status
   ci = commit -v
   co = checkout
