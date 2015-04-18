@@ -5,7 +5,7 @@
 " *Package manager (Vundle)*
 " ==============================================================================
   " Make sure vundle exists in this path
-  set rtp+=~/.vim/bundle/vundle/
+  set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#rc()
 
   " Let Vundle manage Vundle (required)!
