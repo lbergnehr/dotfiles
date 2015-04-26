@@ -24,6 +24,7 @@
   Bundle 'abolish.vim'
   Bundle 'vim-stylus'
   Bundle 'bling/vim-airline'
+  Bundle 'terryma/vim-expand-region'
 
 " ==============================================================================
 " *Mappings*
@@ -125,6 +126,9 @@ nmap <c-p> :cprevious<cr>
 
 " Easy way to turn line numbers on/off to save space
 nmap <leader>ll :call SwitchLineNumbers()<cr>
+
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 " ==============================================================================
 " *Abbreviations*
