@@ -24,6 +24,7 @@
   Bundle 'abolish.vim'
   Bundle 'vim-stylus'
   Bundle 'bling/vim-airline'
+  Bundle 'Syntastic'
   Bundle 'terryma/vim-expand-region'
 
 " ==============================================================================
@@ -135,7 +136,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " ==============================================================================
 " Date and time
 iab <expr> dts strftime("%Y-%m-%d %H:%M:%S")
-
 
 " ==============================================================================
 " *Settings*
