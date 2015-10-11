@@ -131,6 +131,10 @@ nmap <leader>ll :call SwitchLineNumbers()<cr>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+" Open the file with the same name as the current file but with .js as
+" extension
+map <leader>ms <leader>w:e<C-R>=expand("%:p:r") . ".js"<cr><cr>
+
 " ==============================================================================
 " *Abbreviations*
 " ==============================================================================
