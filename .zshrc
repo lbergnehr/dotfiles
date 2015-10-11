@@ -85,3 +85,4 @@ bindkey "^S" "insert-selecta-path-in-command-line"
 # Aliases
 alias edit-git-conflicts='vim -O $(git st -s | grep ^UU | cut -c 4- | xargs)'
 alias beautify-js-files='echo **/*.js | tr " " "\n" | grep -v "moment.js" | while read line; do js-beautify -s 2 -m 2 -r $line; done'
+alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
