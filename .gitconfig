@@ -16,6 +16,7 @@
   amend = commit --amend
   aa = add --all
   au = add -u
+  ap = add -p
   ff = merge --ff-only
   pullff = pull --ff-only
   noff = merge --no-ff
