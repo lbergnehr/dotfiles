@@ -13,7 +13,7 @@
 
   " === Plugins ===
   " Essential
-  Bundle 'Solarized'
+  Bundle 'altercation/vim-colors-solarized'
   Bundle 'fugitive.vim'
   Bundle 'mattn/emmet-vim'
 
@@ -218,10 +218,12 @@ set smartindent
 set wrap "Wrap lines
 
 " === Fonts and colors ===
+" Disable background color erase (BCE) in order for vim to work well with tmux
+set t_ut=
 " Enable syntax highlighting
 syntax enable
 set background=dark
-silent! colorscheme solarized
+colorscheme solarized
 " Set extra options when running in GUI mode
 if has("gui_running")
   set guioptions-=T
@@ -243,11 +245,13 @@ hi Search cterm=underline
 set listchars=tab:▸\ ,eol:¬
 
 " Good settings to improve performance of terminal vim
-let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
-set noshowmatch         " Don't match parentheses/brackets
-set nocursorline        " Don't paint cursor line
+" let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+" set noshowmatch         " Don't match parentheses/brackets
+" set nocursorline        " Don't paint cursor line
 set nocursorcolumn      " Don't paint cursor column
 set scrolljump=8        " Scroll 8 lines at a time at bottom/top
+
+set relativenumber
 
 " ==============================================================================
 " *Auto commands (run when reading or saving file)*
@@ -361,9 +365,11 @@ nmap <leader>bj mq:%! js-beautify -n -s 2 -m 2 -f -<cr>'q
 nmap <leader>bh mq:%! js-beautify -n --type html -s 2 -m 2 -f -<cr>'q
 
 function! SwitchLineNumbers()
-  if &number
+  if &relativenumber
+    set norelativenumber
     set nonumber
   else
     set number
+    set relativenumber
   endif
 endfunction
