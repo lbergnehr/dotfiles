@@ -25,11 +25,16 @@ set certificate_file =~/.mutt/certificates
 
 # SMTP Setup  
 set smtp_url="smtp://leo.bergnehr@smtp.gmail.com:587/"  
+set smtp_authenticators = 'gssapi:login'
+
+# General settings
+set sort=threads
 
 # Special Keybindings  
 bind editor <space> noop  
 
 # Generic
+
 # Index
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"  
 macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"  
@@ -37,12 +42,18 @@ macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
 macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"  
 bind index gg first-entry
 bind index G last-entry
+bind index \cu previous-page
+bind index \cd next-page
+
 # Pager
 bind pager j next-line
 bind pager k previous-line
 bind pager l view-attachments
 bind pager gg top
 bind pager G bottom
+bind pager \cu previous-page
+bind pager \cd next-page
+
 # Attach
 bind attach l view-attach
 
