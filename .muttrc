@@ -29,6 +29,7 @@ set smtp_authenticators = 'gssapi:login'
 
 # General settings
 set sort=threads
+set query_command="lbdbq '%s'"
 
 # Special Keybindings  
 bind editor <space> noop  
