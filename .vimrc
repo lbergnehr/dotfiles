@@ -72,6 +72,9 @@ map <leader><C-l> :tabnext<cr>
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
+" Search for word under cursor in files with same extension
+nmap g* "zyiw<cr>:vim <c-r>z **/*.%:e<cr>
+
 " === Moving / navigating ===
 " Treat visual lines as break lines which is more sane to me
 map j gj
