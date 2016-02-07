@@ -23,6 +23,7 @@
   fa = fetch --all
   pom = push origin master
   poh = push origin head
+  pohf = !git poh --force-with-lease
   b = branch --color
   ds = diff --stat=161,120 --color
   dh1 = diff HEAD~1 --color
