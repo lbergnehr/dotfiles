@@ -254,7 +254,8 @@ set listchars=tab:▸\ ,eol:¬
 set nocursorcolumn      " Don't paint cursor column
 set scrolljump=8        " Scroll 8 lines at a time at bottom/top
 
-set relativenumber
+" Always use vertical diff unless explicitly stated
+set diffopt+=vertical
 
 " ==============================================================================
 " *Auto commands (run when reading or saving file)*
