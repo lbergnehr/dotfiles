@@ -138,6 +138,10 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " extension
 map <leader>ms <leader>w:e<C-R>=expand("%:p:r") . ".js"<cr><cr>
 
+" Easier substitutions
+nmap S :%s//g<LEFT><LEFT>
+nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
+
 " ==============================================================================
 " *Abbreviations*
 " ==============================================================================
