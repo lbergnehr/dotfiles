@@ -16,6 +16,7 @@
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'fugitive.vim'
   Bundle 'mattn/emmet-vim'
+  Bundle 'tpope/vim-commentary'
 
   " Good to have
   Bundle 'surround.vim'
