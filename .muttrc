@@ -35,6 +35,7 @@ set query_command="lbdbq '%s'"
 bind editor <space> noop  
 
 # Generic
+bind generic g? help
 
 # Index
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"  
@@ -45,6 +46,8 @@ bind index gg first-entry
 bind index G last-entry
 bind index \cu previous-page
 bind index \cd next-page
+bind index R group-reply
+bind index ? search-reverse
 
 # Pager
 bind pager j next-line
