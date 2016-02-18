@@ -201,7 +201,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 set gdefault
 " Ignore case unless explicitly using it (smartcase)
 set ignorecase
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 " Highlight search results (but rememer that <cr> will remove hl
 set hlsearch
@@ -242,7 +242,7 @@ if has("gui_running")
     set guifont=Menlo_Regular:h14
   endif
   if has("win32")
-    set guifont=Consolas:h14
+    set guifont=Consolas:h12
   endif
 endif
 
@@ -268,8 +268,7 @@ set diffopt+=vertical
 
 " Set noexpandtab for certain file types that are white space sensitive
 autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
-autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl setlocal iskeyword+=-
-
+autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl,*.ps1 setlocal iskeyword+=-
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
