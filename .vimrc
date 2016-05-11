@@ -55,6 +55,7 @@ map <leader>pp :setlocal paste!<cr>
 " === Spelling ===
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
+map <leader>sf 1z=
 " Shortcuts using <leader>
 map <leader>sn ]s
 map <leader>sp [s
@@ -255,13 +256,14 @@ set listchars=tab:▸\ ,eol:¬
 " Good settings to improve performance of terminal vim
 " let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
 " set noshowmatch         " Don't match parentheses/brackets
-" set nocursorline        " Don't paint cursor line
-set nocursorcolumn      " Don't paint cursor column
 set scrolljump=8        " Scroll 8 lines at a time at bottom/top
 
 " Always use vertical diff unless explicitly stated
 set diffopt+=vertical
 
+" Highligh the line and column
+set cursorline
+set cursorcolumn
 " ==============================================================================
 " *Auto commands (run when reading or saving file)*
 " ==============================================================================
