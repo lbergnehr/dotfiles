@@ -27,6 +27,7 @@
   Bundle 'bling/vim-airline'
   Bundle 'Syntastic'
   Bundle 'terryma/vim-expand-region'
+  Bundle 'jpalardy/vim-slime'
 
 " ==============================================================================
 " *Mappings*
@@ -264,6 +265,17 @@ set diffopt+=vertical
 " Highligh the line and column
 set cursorline
 set cursorcolumn
+" ==============================================================================
+" *Plugin Settings
+" ==============================================================================
+" vim-slime
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1.1"}
+let g:slime_dont_ask_default = 1
+
+" Syntastic
+let g:syntastic_javascript_checkers = ['eslint']
+
 " ==============================================================================
 " *Auto commands (run when reading or saving file)*
 " ==============================================================================
