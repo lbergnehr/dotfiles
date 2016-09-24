@@ -180,7 +180,7 @@ set nofoldenable
 set foldmethod=manual
 
 " === Appearances ===
-" Set 7 lines to the cursor - when moving vertically using j/k
+" Set 5 lines to the cursor - when moving vertically using j/k
 set so=5
 " Makes it easier to complete commands and stuff
 set wildmenu
