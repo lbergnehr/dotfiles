@@ -119,8 +119,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 map <leader>ms <leader>w:e<C-R>=expand("%:p:r") . ".js"<cr><cr>
 
 " Easier substitutions
-nmap S :%s//g<LEFT><LEFT>
-nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
+nmap S :%s//<LEFT><LEFT>
+nmap <expr> M ':%s/' . @/ . '//<LEFT><LEFT>'
 
 " ==============================================================================
 " *Abbreviations*
@@ -357,11 +357,7 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f -and -not -path '*/\.*'", "", ":e")<cr>
-
-" js-beautify
-nmap <leader>bj mq:%! js-beautify -n -s 2 -m 2 -f -<cr>'q
-nmap <leader>bh mq:%! js-beautify -n --type html -s 2 -m 2 -f -<cr>'q
+nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
 
 function! SwitchLineNumbers()
   if &relativenumber
