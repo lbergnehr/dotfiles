@@ -2,32 +2,9 @@
 " Use whatever you want for your own.
 
 " ==============================================================================
-" *Package manager (Vundle)*
+" *Package manager (Pathogen)*
 " ==============================================================================
-  " Make sure vundle exists in this path
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#rc()
-
-  " Let Vundle manage Vundle (required)!
-  Bundle 'gmarik/vundle'
-
-  " === Plugins ===
-  " Essential
-  Bundle 'altercation/vim-colors-solarized'
-  Bundle 'fugitive.vim'
-  Bundle 'mattn/emmet-vim'
-  Bundle 'tpope/vim-commentary'
-
-  " Good to have
-  Bundle 'surround.vim'
-  Bundle "pangloss/vim-javascript"
-  Bundle 'loremipsum'
-  Bundle 'abolish.vim'
-  Bundle 'vim-stylus'
-  Bundle 'bling/vim-airline'
-  Bundle 'Syntastic'
-  Bundle 'terryma/vim-expand-region'
-  Bundle 'jpalardy/vim-slime'
+execute pathogen#infect()
 
 " ==============================================================================
 " *Mappings*
