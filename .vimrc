@@ -260,6 +260,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Set noexpandtab for certain file types that are white space sensitive
 autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
 autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl,*.ps1 setlocal iskeyword+=-
+autocmd BufRead,BufNewFile *.cs,*proj setlocal errorformat=\ %#%f(%l\\\,%c):\ %m
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
