@@ -117,6 +117,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " Easier substitutions
 nmap S :%s//<LEFT><LEFT>
 nmap <expr> M ':%s/' . @/ . '//<LEFT><LEFT>'
+
+noremap / /\v
  
 " ==============================================================================
 " *Abbreviations*
