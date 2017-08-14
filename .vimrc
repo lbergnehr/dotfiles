@@ -224,7 +224,7 @@ if has("gui_running")
 endif
 
 " Set the "highlighted" text to underlined
-hi Search cterm=underline
+hi Search cterm=none ctermfg=15 gui=none guifg=White
 
 " Set better looking characters for `set list`
 set listchars=tab:▸\ ,eol:¬
