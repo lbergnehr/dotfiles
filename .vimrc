@@ -1,14 +1,13 @@
 " This is Leo Bergnéhr's .vimrc.
 " Use whatever you want for your own.
+"
+" vim: foldmethod=marker foldenable
 
-" ==============================================================================
-" *Package manager (Pathogen)*
-" ==============================================================================
+" {{{ Package manager (Pathogen)
 execute pathogen#infect()
+" }}}
 
-" ==============================================================================
-" *Mappings*
-" ==============================================================================
+" {{{ Mappings
 " Remap leader to ','
 let mapleader = ","
 let g:mapleader = ","
@@ -119,16 +118,15 @@ nmap S :%s//<LEFT><LEFT>
 nmap <expr> M ':%s/' . @/ . '//<LEFT><LEFT>'
 
 noremap / /\v
+" }}}
  
-" ==============================================================================
-" *Abbreviations*
-" ==============================================================================
+" {{{ Abbreviations
 " Date and time
 iab <expr> dts strftime("%Y-%m-%d %H:%M:%S")
+" }}}
 
-" ==============================================================================
-" *Settings*
-" ==============================================================================
+" {{{ Settings
+
 " Refresh changed files
 " Remember info about open buffers on close
 set clipboard=unnamed
@@ -240,9 +238,9 @@ set diffopt+=vertical
 " Highligh the line and column
 set cursorline
 set cursorcolumn
-" ==============================================================================
-" *Plugin Settings
-" ==============================================================================
+" }}}
+
+" {{{ Plugin Settings
 " vim-slime
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1.1"}
@@ -251,11 +249,9 @@ let g:slime_dont_ask_default = 1
 " Syntastic
 let g:syntastic_javascript_checkers = ['eslint']
 
-" ==============================================================================
-" *Auto commands (run when reading or saving file)*
-" ==============================================================================
+" }}}
 
-" Set noexpandtab for certain file types that are white space sensitive
+" {{{ Auto commands (run when reading or saving file)
 autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
 autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl,*.ps1 setlocal iskeyword+=-
 autocmd BufRead,BufNewFile *.cs,*proj setlocal errorformat=\ %#%f(%l\\\,%c):\ %m | set makeprg=dotnet\ build
@@ -265,16 +261,14 @@ autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" |
       \ endif
+" }}}
 
-" ==============================================================================
-" *Helper functions*
-" ==============================================================================
 function! CmdLine(str)
   exe "menu Foo.Bar :" . a:str
   emenu Foo.Bar
   unmenu Foo
 endfunction
-
+" {{{ Helper functions
 function! VisualSelection(direction) range
   let l:saved_reg = @"
   execute "normal! vgvy"
@@ -367,3 +361,4 @@ function! SwitchLineNumbers()
     set relativenumber
   endif
 endfunction
+" }}}
