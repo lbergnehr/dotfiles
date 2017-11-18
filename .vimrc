@@ -119,7 +119,7 @@ nmap <expr> M ':%s/' . @/ . '//<LEFT><LEFT>'
 
 noremap / /\v
 " }}}
- 
+
 " {{{ Abbreviations
 " Date and time
 iab <expr> dts strftime("%Y-%m-%d %H:%M:%S")
