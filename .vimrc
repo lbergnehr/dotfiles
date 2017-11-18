@@ -263,12 +263,13 @@ autocmd BufReadPost *
       \ endif
 " }}}
 
+" {{{ Helper functions
 function! CmdLine(str)
   exe "menu Foo.Bar :" . a:str
   emenu Foo.Bar
   unmenu Foo
 endfunction
-" {{{ Helper functions
+
 function! VisualSelection(direction) range
   let l:saved_reg = @"
   execute "normal! vgvy"
