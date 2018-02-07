@@ -63,10 +63,10 @@ map $ g$
 " Remap VIM 0 to first non-blank character
 map 0 ^
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap ê mz:m+<cr>`z
+nmap ë mz:m-2<cr>`z
+vmap ê :m'>+<cr>`<my`>mzgv`yo`z
+vmap ë :m'<-2<cr>`>my`<mzgv`yo`z
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
   nmap <D-k> <M-k>
@@ -103,21 +103,21 @@ map <leader>v :view %%
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
 
-" Map cnext/cprevious to easier keys
-nmap <c-n> :cnext<cr>
-nmap <c-p> :cprevious<cr>
-
-" Easy way to turn line numbers on/off to save space
-nmap <leader>ll :call SwitchLineNumbers()<cr>
-
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 " Easier substitutions
-nmap S :%s//<LEFT><LEFT>
-nmap <expr> M ':%s/' . @/ . '//<LEFT><LEFT>'
+nmap S :%s//<LEFT>
+nmap <expr> M ':%s/' . @/ . '//<LEFT>'
 
-noremap / /\v
+" Ack, fzf and ripgrep
+nmap <leader>a :Ack 
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading'
+  set grepprg=rg\ --color=never
+endif
+if executable('fzf')
+  set rtp+=~/.fzf
+  nmap <leader>f :FZF<cr>
+endif
+
 " }}}
 
 " {{{ Abbreviations
@@ -214,10 +214,10 @@ if has("gui_running")
   set guitablabel=%M\ %t
 
   if has("mac") || has("macunix")
-    set guifont=Menlo_Regular:h14
+    set guifont=Menlo_Regular:h12
   endif
   if has("win32")
-    set guifont=Consolas:h12
+    set guifont=Consolas:h10
   endif
 endif
 
@@ -235,19 +235,13 @@ set scrolljump=8        " Scroll 8 lines at a time at bottom/top
 " Always use vertical diff unless explicitly stated
 set diffopt+=vertical
 
-" Highligh the line and column
-set cursorline
-set cursorcolumn
+" Fold XML sensibly
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+
 " }}}
 
 " {{{ Plugin Settings
-" vim-slime
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "1.1"}
-let g:slime_dont_ask_default = 1
-
-" Syntastic
-let g:syntastic_javascript_checkers = ['eslint']
 
 " }}}
 
@@ -261,6 +255,9 @@ autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" |
       \ endif
+
+" .proj is the same as .xml
+autocmd FileType proj setlocal filetype xml
 " }}}
 
 " {{{ Helper functions
@@ -349,17 +346,61 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   exec a:vim_command . " " . selection
 endfunction
 
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+" ex command for toggling hex mode - define mapping if desired
+command! -bar Hexmode call ToggleHex()
 
-function! SwitchLineNumbers()
-  if &relativenumber
-    set norelativenumber
-    set nonumber
+" nnoremap <C-H> :Hexmode<CR>
+" inoremap <C-H> <Esc>:Hexmode<CR>
+" vnoremap <C-H> :<C-U>Hexmode<CR>" helper function to toggle hex mode
+
+" vim -b : edit binary using xxd-format!
+augroup Binary
+  au!
+  au BufReadPre  *.dcm let &bin=1
+  au BufReadPost *.dcm if &bin | %!xxd
+  au BufReadPost *.dcm set ft=xxd | endif
+  au BufWritePre *.dcm if &bin | %!xxd -r
+  au BufWritePre *.dcm endif
+  au BufWritePost *.dcm if &bin | %!xxd
+  au BufWritePost *.dcm set nomod | endif
+augroup END
+
+function! ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries 
+    "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
   else
-    set number
-    set relativenumber
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
   endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
 endfunction
 " }}}
