@@ -114,6 +114,7 @@ if executable('rg')
   set grepprg=rg\ --color=never
 endif
 if executable('fzf')
+  set rtp+=/usr/local/opt/fzf
   set rtp+=~/.fzf
   nmap <leader>f :FZF<cr>
 endif
