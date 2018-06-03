@@ -47,6 +47,7 @@ export EDITOR=vim
 # Set vi key bindings
 bindkey -v
 bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M vicmd v edit-command-line 
 
 # Fix to make git autocompletion usable
 __git_files () {
