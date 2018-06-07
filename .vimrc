@@ -249,7 +249,9 @@ au FileType xml setlocal foldmethod=syntax
 " {{{ Auto commands (run when reading or saving file)
 autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
 autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl,*.ps1 setlocal iskeyword+=-
-autocmd BufRead,BufNewFile *.cs,*proj setlocal errorformat=\ %#%f(%l\\\,%c):\ %m | set makeprg=dotnet\ build
+autocmd BufRead,BufNewFile *.cs,*proj call SetDotnetOptions()
+autocmd BufWrite *.cs call WriteCsFile()
+autocmd BufRead,BufNewFile *.rs nmap <leader>r :RustRun<cr>
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
@@ -259,6 +261,27 @@ autocmd BufReadPost *
 
 " .proj is the same as .xml
 autocmd FileType proj setlocal filetype xml
+
+function! SetDotnetOptions()
+  setlocal
+        \ errorformat=\ %#%f(%l\\\,%c):\ %m 
+        \ makeprg=dotnet\ build 
+        \ shiftwidth=4 
+        \ tabstop=4 
+        \ foldmethod=marker 
+        \ foldmarker={,}
+        \ fileformat=dos
+  map <leader>b :wa!<cr>:make<cr>
+  map <leader>r :was!<cr>!dotnet run<cr>
+endfunction
+
+function! WriteCsFile()
+  execute "normal msHmt"
+  execute "normal :0go\<cr>"
+  execute "normal vip"
+  execute "normal :'<,'>sort u\<cr>"
+  execute "normal! 'tzt`s"
+endfunction
 " }}}
 
 " {{{ Helper functions
