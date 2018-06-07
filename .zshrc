@@ -68,11 +68,24 @@ bindkey -M viins '^N' history-incremental-pattern-search-forward
 # that those keys can be used for other things.
 unsetopt flowcontrol
 
+# Key bindings
+
 insert-git-status-file-in-command-line() {
-LBUFFER="$LBUFFER$(((git status --porcelain | fzf) || return) | awk '{ print $2 }')"; zle reset-prompt
+  file=$(((git status --porcelain | fzf) || return) | awk '{ print $2 }')
+  LBUFFER="$LBUFFER$file"
+  zle reset-prompt
 }
+zle -N insert-git-status-file-in-command-line
+
+insert-git-branch-in-command-line() {
+  branch=$(git branch --color=always --all --format="%(refname:lstrip=2)" | fzf --ansi)
+  LBUFFER="$LBUFFER$branch"
+  zle reset-prompt
+}
+zle -N insert-git-branch-in-command-line
+
+bindkey "^g^s" insert-git-status-file-in-command-line
+bindkey "^g^b" insert-git-branch-in-command-line
 
 # Aliases
-alias edit-git-conflicts='vim -O $(git st -s | grep ^UU | cut -c 4- | xargs)'
-alias beautify-js-files='echo **/*.js | tr " " "\n" | grep -v "moment.js" | while read line; do js-beautify -s 2 -m 2 -r $line; done'
 alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
