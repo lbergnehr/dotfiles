@@ -23,7 +23,7 @@
   noff = merge --no-ff
   fa = fetch --all
   pom = push origin master
-  poh = push origin head
+  poh = push origin HEAD
   pohf = !git poh --force-with-lease
   b = branch --color
   ds = diff --stat=161,120 --color
