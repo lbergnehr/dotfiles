@@ -84,8 +84,16 @@ insert-git-branch-in-command-line() {
 }
 zle -N insert-git-branch-in-command-line
 
+insert-git-revision-in-command-line() {
+  revision=$((git lf | fzf --ansi --reverse --preview "echo {} | cut -d ' ' -f 1 | tr -d '\042' | xargs git show --stat --format=fuller --color" || return) | awk '{ print $1 }')
+  LBUFFER="$LBUFFER$revision"
+  zle reset-prompt
+}
+zle -N insert-git-revision-in-command-line
+
 bindkey "^g^s" insert-git-status-file-in-command-line
 bindkey "^g^b" insert-git-branch-in-command-line
+bindkey "^g^r" insert-git-revision-in-command-line
 
 # Aliases
 alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
