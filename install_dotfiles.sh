@@ -2,8 +2,8 @@
 
 set -e
 
-dotfiles_location=~/dotfiles
-dotfiles=(.vimrc .zshrc .gitconfig .vim)
+dotfiles_location=$HOME/dotfiles
+dotfiles=(.vimrc .zshrc .gitconfig .tmux.conf .vim)
 
 main() {
   verify_git
@@ -30,33 +30,34 @@ clone_repo() {
 }
 
 backup_existing_dotfiles() {
-  for dotfile in "$dotfiles"
+  for dotfile in "${dotfiles[@]}"
   do
     dotfile_path="$dotfiles_location/$dotfile"
 
     # Check for existing symlink
-    if [[ "$(readlink ~/$dotfile)" == $dotfile_path ]]
+    if [[ "$(readlink $HOME/$dotfile)" == $dotfile_path ]]
     then
       continue
     fi
 
     # Check for other existing dotfile
-    if test -e "~/$dotfile"
+    if test -e "$HOME/$dotfile"
     then
-      echo "Backing up ~/$dotfile to ~/${dotfile}.orig"
-      mv "~/$dotfile" "${dotfile}.orig"
+      echo "Backing up $HOME/$dotfile to $HOME/$dotfile.orig"
+      mv "$HOME/$dotfile" "$HOME/$dotfile.orig"
     fi
   done
 }
 
 create_symlinks() {
-  for dotfile in "$dotfiles"
+  for dotfile in "${dotfiles[@]}"
   do
     dotfile_path="$dotfiles_location/$dotfile"
 
-    if ! test -e "~/$dotfile"
+    if ! test -e "$HOME/$dotfile"
     then
-      ln -s "$dotfile_path" "~/$dotfile"
+      echo "Creating symlink from $dotfile_path to $HOME/$dotfile"
+      ln -s "$dotfile_path" "$HOME/$dotfile"
     fi
   done
 }
