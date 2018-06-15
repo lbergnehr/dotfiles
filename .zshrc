@@ -40,6 +40,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=~/bin:~/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export GIT_LOG_ALIAS=l
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!.hg/*"'
 
 # Vim as editor
 export EDITOR=vim
