@@ -97,3 +97,8 @@ bindkey "^g^r" insert-git-revision-in-command-line
 
 # Aliases
 alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
+
+# Nicer colors for ls
+if [ -f ~/.dir_colors ]; then
+  eval $(dircolors ~/.dir_colors)
+fi
