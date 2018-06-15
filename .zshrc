@@ -78,7 +78,7 @@ insert-git-status-file-in-command-line() {
 zle -N insert-git-status-file-in-command-line
 
 insert-git-branch-in-command-line() {
-  branch=$(git branch --color=always --all --format="%(refname:lstrip=2)" | fzf --ansi)
+  branch=$(git branch --color=always --all | sed 's/^[\* ]*//' | fzf --ansi)
   LBUFFER="$LBUFFER$branch"
   zle reset-prompt
 }
