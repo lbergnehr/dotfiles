@@ -92,9 +92,17 @@ insert-git-revision-in-command-line() {
 }
 zle -N insert-git-revision-in-command-line
 
+insert-file-in-command-line() {
+  file=$(fzf --ansi --preview "file {} && bat --color always {}" || return)
+  LBUFFER="$LBUFFER$file"
+  zle reset-prompt
+}
+zle -N insert-file-in-command-line
+
 bindkey "^g^s" insert-git-status-file-in-command-line
 bindkey "^g^b" insert-git-branch-in-command-line
 bindkey "^g^r" insert-git-revision-in-command-line
+bindkey "^f"   insert-file-in-command-line
 
 # Aliases
 alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
