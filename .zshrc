@@ -93,7 +93,12 @@ insert-git-revision-in-command-line() {
 zle -N insert-git-revision-in-command-line
 
 insert-file-in-command-line() {
-  file=$(fzf --ansi --preview "file {} && bat --color always {}" || return)
+  cat_command='cat'
+  if which bat > /dev/null; then
+    cat_command='bat --color always'
+  fi
+
+  file=$(fzf --ansi --preview "file {} && $cat_command {}" || return)
   LBUFFER="$LBUFFER$file"
   zle reset-prompt
 }
@@ -108,6 +113,6 @@ bindkey "^f"   insert-file-in-command-line
 alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
 
 # Nicer colors for ls
-if [ -f ~/.dir_colors ]; then
+if [ -f ~/.dir_colors ] && which -s dircolors > /dev/null; then
   eval $(dircolors ~/.dir_colors)
 fi
