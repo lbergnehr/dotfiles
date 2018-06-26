@@ -1,5 +1,9 @@
 # Fix for using autojump
 unsetopt BG_NICE
+
+# Fix for wsl
+umask 022
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -51,6 +55,8 @@ export EDITOR=vim
 bindkey -v
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M vicmd v edit-command-line 
+
+export GPG_TTY=$(tty)
 
 # Fix to make git autocompletion usable
 __git_files () {
