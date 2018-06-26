@@ -1,3 +1,5 @@
+# Fix for using autojump
+unsetopt BG_NICE
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -32,7 +34,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial brew cp node npm tmux)
+plugins=(git mercurial brew cp node npm tmux autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,6 +57,7 @@ __git_files () {
   _wanted files expl 'local files' _files
 }
 
+# Autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Search backwards and forwards with a pattern
