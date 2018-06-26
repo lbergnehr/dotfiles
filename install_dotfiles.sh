@@ -25,7 +25,7 @@ clone_repo() {
   then
     git clone --recurse-submodules https://github.com/lbergnehr/dotfiles.git "$dotfiles_location"
   else
-    (cd "$dotfiles_location" && git pull --recurse-submodules)
+    (cd "$dotfiles_location" && git pull --recurse-submodules && git submodule update --init)
   fi
 }
 
