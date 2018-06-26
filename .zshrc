@@ -81,7 +81,7 @@ unsetopt flowcontrol
 # Key bindings
 
 insert-git-status-file-in-command-line() {
-  file=$(((git status --porcelain | fzf) || return) | awk '{ print $2 }')
+  file=$(((git status --porcelain | fzf --ansi -m) || return) | awk '{ print $2 }')
   LBUFFER="$LBUFFER$file"
   zle reset-prompt
 }
@@ -107,7 +107,7 @@ insert-file-in-command-line() {
     cat_command='bat --color always'
   fi
 
-  file=$(fzf --ansi --preview "file {} && $cat_command {}" || return)
+  file=$(fzf --ansi -m --preview "file {} && $cat_command {}" || return)
   LBUFFER="$LBUFFER$file"
   zle reset-prompt
 }
