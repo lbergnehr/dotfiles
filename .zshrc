@@ -125,3 +125,7 @@ alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
 if [ -f ~/.dir_colors ] && which -s dircolors > /dev/null; then
   eval $(dircolors ~/.dir_colors)
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
