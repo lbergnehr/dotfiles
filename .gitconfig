@@ -28,7 +28,7 @@
   b = branch --color
   ds = diff --stat=161,120 --color
   dh1 = diff HEAD~1 --color
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  wipe = !git add -A && git commit --no-gpg-sign -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
   bclean = "!f() { git remote prune origin && git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
   bdone = "!f() { git co ${1-master} && git fa && git ff origin/${1-master} && git bclean ${1-master}; }; f"
   undo = fetch --prune
@@ -46,3 +46,5 @@
 [merge]
   ff = only
 
+[commit]
+	gpgsign = true
