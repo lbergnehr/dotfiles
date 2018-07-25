@@ -11,6 +11,7 @@
   st = status
   ci = commit -v
   co = checkout
+  coh = checkout HEAD
   di = diff --color
   diw = diff --color --word-diff
   dc = diff --cached --color
