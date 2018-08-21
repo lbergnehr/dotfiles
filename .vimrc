@@ -244,6 +244,10 @@ au FileType xml setlocal foldmethod=syntax
 
 " {{{ Plugin Settings
 
+nmap <leader>tn :w!<cr>:TestNearest<cr>
+nmap <leader>tf :w!<cr>:TestFile<cr>
+nmap <leader>tl :w!<cr>:TestLast<cr>
+
 " }}}
 
 " {{{ Auto commands (run when reading or saving file)

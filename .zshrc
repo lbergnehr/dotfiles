@@ -95,7 +95,7 @@ insert-git-branch-in-command-line() {
 zle -N insert-git-branch-in-command-line
 
 insert-git-revision-in-command-line() {
-  revision=$((git lf | fzf --ansi --reverse --preview "echo {} | cut -d ' ' -f 1 | tr -d '\042' | xargs git show --stat --format=fuller --color" || return) | awk '{ print $1 }')
+  revision=$((git lf --all | fzf --ansi --reverse --preview "echo {} | cut -d ' ' -f 1 | tr -d '\042' | xargs git show --format=fuller --color" || return) | awk '{ print $1 }')
   LBUFFER="$LBUFFER$revision"
   zle reset-prompt
 }
@@ -107,7 +107,7 @@ insert-file-in-command-line() {
     cat_command='bat --color always'
   fi
 
-  file=$(fzf --ansi -m --preview "file {} && $cat_command {}" || return)
+  file=$(fzf -m --ansi --preview "file {} && $cat_command {}" || return)
   LBUFFER="$LBUFFER$file"
   zle reset-prompt
 }
