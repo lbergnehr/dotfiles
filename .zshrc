@@ -38,9 +38,10 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial brew cp node npm tmux autojump)
+plugins=(git mercurial brew cp node npm tmux tmuxinator autojump ruby rake gem)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/dotfiles/tmuxinator.zsh
 
 # Customize to your needs...
 export PATH=~/bin:~/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
