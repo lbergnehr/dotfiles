@@ -116,7 +116,8 @@ endif
 if executable('fzf')
   set rtp+=/usr/local/opt/fzf
   set rtp+=~/.fzf
-  nmap <leader>f :FZF<cr>
+  nmap <leader>f :call fzf#run({'source': 'rg --files --hidden --follow --glob "!.git/*" --glob "!.hg/*"', 'sink': 'e'})<cr>
+  nmap <leader>F :call fzf#run({'source': 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!.hg/*"', 'sink': 'e'})<cr>
 endif
 
 " }}}
