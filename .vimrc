@@ -120,6 +120,9 @@ if executable('fzf')
   nmap <leader>F :call fzf#run({'source': 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!.hg/*"', 'sink': 'e'})<cr>
 endif
 
+" `sudo` save a file if we didn't open vim as root
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 " }}}
 
 " {{{ Abbreviations
