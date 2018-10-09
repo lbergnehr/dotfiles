@@ -44,10 +44,10 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/dotfiles/tmuxinator.zsh
 
 # Customize to your needs...
-export PATH=~/bin:~/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH=~/bin:~/.local/bin:~/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export GIT_LOG_ALIAS=l
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!.hg/*"'
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git/*' --glob '!.hg/*'"
 
 # Vim as editor
 export EDITOR=vim
@@ -81,43 +81,83 @@ unsetopt flowcontrol
 
 # Key bindings
 
-insert-git-status-file-in-command-line() {
-  file=$(((git status --porcelain | fzf --ansi -m) || return) | awk '{ print $2 }')
-  LBUFFER="$LBUFFER$file"
-  zle reset-prompt
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
 }
-zle -N insert-git-status-file-in-command-line
 
-insert-git-branch-in-command-line() {
-  branch=$(git branch --color=always --all | sed 's/^[\* ]*//' | fzf --ansi)
-  LBUFFER="$LBUFFER$branch"
-  zle reset-prompt
+fzf-down() {
+  fzf --height 50% "$@" --border
 }
-zle -N insert-git-branch-in-command-line
 
-insert-git-revision-in-command-line() {
-  revision=$((git lf --all | fzf --ansi --reverse --preview "echo {} | cut -d ' ' -f 1 | tr -d '\042' | xargs git show --format=fuller --color" || return) | awk '{ print $1 }')
-  LBUFFER="$LBUFFER$revision"
-  zle reset-prompt
+_gs() {
+  is_in_git_repo || return
+  git -c color.status=always status --short |
+  fzf-down -m --ansi --nth 2..,.. \
+  --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+  cut -c4- | sed 's/.* -> //'
 }
-zle -N insert-git-revision-in-command-line
 
-insert-file-in-command-line() {
+_gb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-down --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+_gt() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
+_gh() {
+  is_in_git_repo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
+_gr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
+  cut -d$'\t' -f1
+}
+
+_f() {
   cat_command='cat'
   if which bat > /dev/null; then
     cat_command='bat --color always'
   fi
 
-  file=$(fzf -m --ansi --preview "file {} && $cat_command {}" || return)
-  LBUFFER="$LBUFFER$file"
-  zle reset-prompt
+  eval "$FZF_DEFAULT_COMMAND" | fzf-down --multi --ansi --preview "file {} && $cat_command {}"
 }
-zle -N insert-file-in-command-line
 
-bindkey "^g^s" insert-git-status-file-in-command-line
-bindkey "^g^b" insert-git-branch-in-command-line
-bindkey "^g^r" insert-git-revision-in-command-line
-bindkey "^f"   insert-file-in-command-line
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+bind-helper() {
+  local c
+  for c in $@; do
+    eval "fzf-$prefix$c-widget() { local result=\$(_$prefix$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+    eval "zle -N fzf-$prefix$c-widget"
+    eval "bindkey '${prefix:+^$prefix}^$c' fzf-$prefix$c-widget"
+  done
+}
+
+prefix=g bind-helper s b t r h
+bind-helper f
+unset -f bind-helper
 
 # Aliases
 alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
