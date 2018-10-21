@@ -1,6 +1,6 @@
 [user]
-	name = Leo Bergnéhr
-	email = leo@bergnehr.se
+  name = Leo Bergnéhr
+  email = leo@bergnehr.se
 
 [alias]
   lf = log --decorate --pretty=format:'%h -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
@@ -48,4 +48,7 @@
   ff = only
 
 [commit]
-	gpgsign = true
+  gpgsign = true
+
+[core]
+  excludesFile = ~/.gitignore_global
