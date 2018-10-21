@@ -15,8 +15,8 @@ let g:mapleader = ","
 " Map jk to Escape (beats jj any time of day ;))
 imap jk <esc>
 " Make tab jump between matching brackets
-nnoremap <tab> %
-vnoremap <tab> %
+nmap <tab> %
+vmap <tab> %
 " Change the meaning of ' and ` since ` is easier to reach and used more often
 nnoremap ' `
 vnoremap ' `
