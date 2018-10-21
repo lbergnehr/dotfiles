@@ -284,11 +284,6 @@ function! SetDotnetOptions()
 endfunction
 
 function! WriteCsFile()
-  execute "normal msHmt"
-  execute "normal :0go\<cr>"
-  execute "normal vip"
-  execute "normal :'<,'>sort u\<cr>"
-  execute "normal! 'tzt`s"
 endfunction
 " }}}
 
