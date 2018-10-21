@@ -244,6 +244,9 @@ set diffopt+=vertical
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 
+" Enable better matching
+runtime macros/matchit.vim
+
 " }}}
 
 " {{{ Plugin Settings
