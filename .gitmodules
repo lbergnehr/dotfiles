@@ -7,9 +7,6 @@
 [submodule ".vim/bundle/emmet-vim"]
 	path = .vim/bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
-[submodule ".vim/bundle/fugitive.vim"]
-	path = .vim/bundle/fugitive.vim
-	url = https://github.com/vim-scripts/fugitive.vim.git
 [submodule ".vim/bundle/loremipsum"]
 	path = .vim/bundle/loremipsum
 	url = https://github.com/vim-scripts/loremipsum.git
@@ -64,3 +61,6 @@
 [submodule ".vim/bundle/vim-projectionist"]
 	path = .vim/bundle/vim-projectionist
 	url = https://github.com/tpope/vim-projectionist.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
