@@ -10,6 +10,7 @@
   fdi = !git di $(git la | selecta | tr -d \" *-/|\\\\\" | cut -c 1-7) $(git la | selecta | tr -d \" *-/|\\\\\" | cut -c 1-7)
   st = status
   ci = commit -v
+  cir = !git ci --reedit-message=HEAD --reset-author
   co = checkout
   coh = checkout HEAD
   di = diff --color
@@ -22,7 +23,7 @@
   ff = merge --ff-only
   pullff = pull --ff-only
   noff = merge --no-ff
-  fa = fetch --all
+  fa = fetch --all --prune
   pom = push origin master
   poh = push origin HEAD
   pohf = !git poh --force-with-lease
@@ -52,3 +53,4 @@
 
 [core]
   excludesFile = ~/.gitignore_global
+  whitespace=tab-in-indent,cr-at-eol
