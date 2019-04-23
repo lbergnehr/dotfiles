@@ -207,11 +207,13 @@ set wrap "Wrap lines
 
 " === Fonts and colors ===
 " Disable background color erase (BCE) in order for vim to work well with tmux
-set t_ut=
+" set t_ut=
 " Enable syntax highlighting
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme nord
+let g:nord_uniform_diff_background = 1
+
 " Set extra options when running in GUI mode
 if has("gui_running")
   set guioptions-=T
@@ -255,12 +257,15 @@ nmap <leader>tn :wa!<cr>:TestNearest<cr>
 nmap <leader>tf :wa!<cr>:TestFile<cr>
 nmap <leader>tl :wa!<cr>:TestLast<cr>
 
+let g:fugitive_gitlab_domains = ['https://gitlab.sectra.net']
+
 " }}}
 
 " {{{ Auto commands (run when reading or saving file)
 autocmd BufRead,BufNewFile *.styl,*.taskpaper setlocal noexpandtab
 autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl,*.ps1 setlocal iskeyword+=-
 autocmd BufRead,BufNewFile *.cs,*proj call SetDotnetOptions()
+autocmd BufRead,BufNewFile *.proj,*csproj setlocal filetype=xml
 autocmd BufWrite *.cs call WriteCsFile()
 autocmd BufRead,BufNewFile *.rs nmap <leader>r :RustRun<cr>
 
