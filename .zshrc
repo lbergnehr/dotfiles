@@ -46,7 +46,10 @@ source $HOME/dotfiles/tmuxinator.zsh
 # Customize to your needs...
 export PATH=~/bin:~/.local/bin:~/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
 export GIT_LOG_ALIAS=l
+export LANG=en_US
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git/*' --glob '!.hg/*'"
 
 # Vim as editor
@@ -113,7 +116,7 @@ _gt() {
     --preview 'git show --color=always {} | head -'$LINES
 }
 
-_gh() {
+_gi() {
   is_in_git_repo || return
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
@@ -155,7 +158,7 @@ bind-helper() {
   done
 }
 
-prefix=g bind-helper s b t r h
+prefix=g bind-helper s b t r i
 bind-helper f
 unset -f bind-helper
 
