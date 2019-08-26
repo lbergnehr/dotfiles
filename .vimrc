@@ -132,7 +132,27 @@ iab <expr> dts strftime("%Y-%m-%d %H:%M:%S")
 
 " {{{ Settings
 
-" Refresh changed files
+" Backup settings
+set swapfile
+set directory^=~/.vim/swap//
+
+" protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write
+set nobackup
+" use rename-and-write-new method whenever safe
+set backupcopy=auto
+" patch required to honor double slash at end
+if has("patch-8.1.0251")
+        " consolidate the writebackups -- not a big
+        " deal either way, since they usually get deleted
+        set backupdir^=~/.vim/backup//
+end
+
+" persist the undo tree for each file
+set undofile
+set undodir^=~/.vim/undo//
+
 " Remember info about open buffers on close
 set clipboard=unnamed
 set viminfo^=%
@@ -140,10 +160,7 @@ set viminfo^=%
 set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
-" Turn backup off
-set nobackup
-set nowb
-set noswapfile
+" Refresh changed files
 set autoread
 " Increase the history
 set history=1000
@@ -154,16 +171,14 @@ set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 " No folding
-set nofoldenable
-set foldmethod=manual
+set foldenable
+set foldmethod=syntax
 
 " === Appearances ===
 " Set 5 lines to the cursor - when moving vertically using j/k
 set so=5
 " Makes it easier to complete commands and stuff
 set wildmenu
-" Show where we are in the file
-set ruler
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 " Show matching brackets when text indicator is over them
@@ -174,6 +189,8 @@ set mat=2
 set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+" Show more of the status line
+set ch=2
 
 " === Searching ===
 " Ignore case when searching
@@ -204,6 +221,7 @@ set textwidth=0
 set autoindent
 set smartindent
 set wrap "Wrap lines
+set number
 
 " === Fonts and colors ===
 " Disable background color erase (BCE) in order for vim to work well with tmux
@@ -229,7 +247,7 @@ if has("gui_running")
 endif
 
 " Set the "highlighted" text to underlined
-hi Search cterm=none ctermfg=15 gui=none guifg=White
+" hi Search cterm=none ctermfg=15 gui=none guifg=White
 
 " Set better looking characters for `set list`
 set listchars=tab:▸\ ,eol:¬
