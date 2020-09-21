@@ -224,6 +224,12 @@ set smartindent
 set wrap "Wrap lines
 set number
 
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 " === Fonts and colors ===
 " Disable background color erase (BCE) in order for vim to work well with tmux
 " set t_ut=
@@ -454,28 +460,12 @@ function! <SID>BufcloseCloseIt()
   endif
 endfunction
 
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion. (Credit to @garybernhardt.)
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-x><c-o>
-
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
-function! SelectaCommand(choice_command, selecta_args, vim_command)
+function! FzfCommand(choice_command, fzf_args, vim_command)
   try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+    let selection = system(a:choice_command . " | fzf " . a:fzf_args)
   catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
     redraw!
     return
   endtry
