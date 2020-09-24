@@ -397,7 +397,7 @@ autocmd BufRead,BufNewFile *.css,*.html,*.js,*.styl,*.ps1 setlocal iskeyword+=-
 autocmd BufRead,BufNewFile *.ps1 let g:VimuxResetSequence = ""
 autocmd BufRead,BufNewFile *.cs,*proj call SetDotnetOptions()
 autocmd BufRead,BufNewFile *.proj,*csproj setlocal filetype=xml
-autocmd BufRead,BufNewFile *.fs,*.fsx setlocal filetype=fsharp
+autocmd BufRead,BufNewFile *.fs,*.fsx setlocal filetype=fsharp commentstring=(*%s*)
 autocmd BufWrite *.cs call WriteCsFile()
 autocmd BufRead,BufNewFile *.rs nmap <leader>r :RustRun<cr>
 au FileType php setl ofu=phpcomplete#CompletePHP
