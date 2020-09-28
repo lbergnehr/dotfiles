@@ -284,6 +284,7 @@ nmap <leader>tl :wa!<cr>:TestLast<cr>
 
 let g:fugitive_gitlab_domains = ['https://gitlab.sectra.net']
 
+let g:ale_fixers = { 'elixir': ['mix_format'] }
 let g:ale_linter_aliases = {'ps1': 'powershell'}
 let g:ale_powershell_psscriptanalyzer_executable = 'powershell.exe'
 
@@ -360,7 +361,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
 
 " }}}
 
