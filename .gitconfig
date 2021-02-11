@@ -41,6 +41,7 @@
 [diff]
   tool = vimdiff
   algorithm = patience
+  colorMoved = dimmed-zebra
 
 [difftool]
   promt = false
@@ -49,17 +50,19 @@
   promt = false
 
 [rerere]
-	enabled = true
+  enabled = true
 
 [merge]
   ff = only
   tool = vimdiff
 
-[commit]
-	; gpgsign = true
-
 [core]
   excludesFile = ~/.gitignore_global
   whitespace=tab-in-indent,cr-at-eol
   autocrlf = false
-  pager = delta --theme=Nord
+  pager = delta --theme=Nord --24-bit-color=always
+
+[web]
+  browser = ff
+[browser "ff"]
+  cmd = explorer.exe

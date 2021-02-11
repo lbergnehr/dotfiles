@@ -11,7 +11,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agkozak"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -35,25 +35,36 @@ ZSH_THEME="robbyrussell"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
+zstyle :omz:plugins:ssh-agent identities id_rsa patchlings_pass_id_rsa
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial brew cp node npm tmux tmuxinator autojump ruby rake gem mix)
+plugins=(git mercurial brew cp node npm tmux tmuxinator ruby rake gem mix docker python ssh-agent colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/dotfiles/tmuxinator.zsh
 
 # Customize to your needs...
-export PATH=~/bin:~/.local/bin:~/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+if command -v brew > /dev/null; then
+  export PATH="$(brew --prefix ruby)/bin:$PATH"
+fi
+if command -v gem > /dev/null; then
+  export PATH="$(gem environment gemdir)/bin:$PATH"
+fi
+export PATH="$HOME/bin:$PATH"
 export GIT_LOG_ALIAS=l
-export LANG=en_US
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git/*' --glob '!.hg/*'"
 
 # Vim as editor
 export EDITOR=nvim
+export VISUAL=nvim
 
 # Set vi key bindings
 bindkey -v
@@ -69,6 +80,7 @@ __git_files () {
 
 # Autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+[ -f /home/linuxbrew/.linuxbrew/etc/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/autojump.sh
 
 # Search backwards and forwards with a pattern
 bindkey -M vicmd '/' history-incremental-pattern-search-backward
@@ -118,7 +130,7 @@ _gt() {
 
 _gi() {
   is_in_git_repo || return
-  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  git log --all --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
@@ -142,6 +154,15 @@ _f() {
   eval "$FZF_DEFAULT_COMMAND" | fzf-down --multi --ansi --preview "file {} && $cat_command {}"
 }
 
+_F() {
+  cat_command='cat'
+  if which bat > /dev/null; then
+    cat_command='bat --color always'
+  fi
+
+  eval "$FZF_DEFAULT_COMMAND --no-ignore-vcs" | fzf-down --multi --ansi --preview "file {} && $cat_command {}"
+}
+
 join-lines() {
   local item
   while read item; do
@@ -158,12 +179,39 @@ bind-helper() {
   done
 }
 
-prefix=g bind-helper s b t r i
-bind-helper f
+_os() {
+  up -Tc 'openstack server list -f value' \
+    | fzf \
+    --ansi \
+    --with-nth "2.." \
+    --preview "up -Tc 'openstack server show --fit-width {1}'" \
+    --preview-window "down:80%:wrap"
+}
+
+prefix=g bind-helper s b t i r
+bind-helper f F
+prefix=o bind-helper s
+
 unset -f bind-helper
+
+open() {
+  cmd.exe /C "start $1"
+}
+
+_powershell() {
+  args=$*
+  if [[ $1 == "-" ]]; then
+    cat | powershell.exe -NoProfile -Command "-"
+  else
+    powershell.exe -NoProfile -Command "$args"
+  fi
+}
 
 # Aliases
 alias bt='wget http://cachefly.cachefly.net/100mb.test -O /dev/null'
+alias msbuild="'/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/Professional/MSBuild/Current/Bin/MSBuild.exe'"
+alias clip="'/mnt/c/Windows/System32/clip.exe'"
+alias p=_powershell
 
 # Nicer colors for ls
 if [ -f ~/.dir_colors ] && which -s dircolors > /dev/null; then
