@@ -3,7 +3,7 @@
 set -e
 
 dotfiles_location=$HOME/dotfiles
-dotfiles=(.vimrc .zshrc .gitconfig .gitignore_global .tmux.conf .dir_colors .vim)
+dotfiles=(.vimrc .zshrc .gitconfig .gitignore_global .tmux.conf .tmux.conf.local .dir_colors .vim)
 
 main() {
   verify_git
