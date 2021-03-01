@@ -1,3 +1,5 @@
 *.un~
 *_local
 .vagrant
+.vim/undo
+.vim/swap
