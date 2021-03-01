@@ -3,8 +3,35 @@
 "
 " vim: foldmethod=marker foldenable
 
-" {{{ Package manager (Pathogen)
-execute pathogen#infect()
+" {{{ Package manager (vim-plug)
+
+call plug#begin(stdpath('data') . '/plugged')
+
+Plug 'arcticicestudio/nord-vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'elixir-lang/vim-elixir'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'mhinz/vim-mix-format'
+Plug 'mileszs/ack.vim'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'neoclide/coc.nvim'
+Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim'
+Plug 'slashmili/alchemist.vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-ruby/vim-ruby'
+Plug 'w0rp/ale'
+
+call plug#end()
+
 " }}}
 
 " {{{ Mappings
