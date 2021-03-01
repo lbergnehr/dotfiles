@@ -378,6 +378,12 @@ au FileType ruby,eruby setl ofu=rubycomplete#Complete
 au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
+au FileType plantuml,markdown call PlantUMLConfig()
+
+function! PlantUMLConfig()
+  vmap <leader>r :'<,'>w !plantuml<cr>
+  nmap <leader>r :w !plantuml<cr>
+endfunction
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
