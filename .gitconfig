@@ -26,6 +26,7 @@
   fa = fetch --all --prune
   pom = push origin master
   poh = push origin HEAD
+  pohm = !git poh -o merge_request.create
   pohf = !git poh --force-with-lease
   b = branch --color
   ds = diff --stat=161,120 --color
@@ -35,11 +36,16 @@
   bdone = "!f() { git co ${1-master} && git fa && git ff origin/${1-master} && git bclean ${1-master}; }; f"
   undo = fetch --prune
   stash-all = stash save --include-untracked
+  find-merge = "!bash -c 'comm --nocheck-order -12 <(git rev-list $0..${1:-master} --ancestry-path) <(git rev-list $0..${1:-master} --first-parent) | tail -n1 | xargs git show'"
 
 [diff]
   tool = vimdiff
+  algorithm = patience
 
 [difftool]
+  promt = false
+
+[mergetool]
   promt = false
 
 [rerere]
@@ -47,10 +53,13 @@
 
 [merge]
   ff = only
+  tool = vimdiff
 
 [commit]
-  gpgsign = true
+	; gpgsign = true
 
 [core]
   excludesFile = ~/.gitignore_global
   whitespace=tab-in-indent,cr-at-eol
+  autocrlf = false
+  pager = delta --theme=Nord
