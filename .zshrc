@@ -53,7 +53,7 @@ export LANG=en_US
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git/*' --glob '!.hg/*'"
 
 # Vim as editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # Set vi key bindings
 bindkey -v
