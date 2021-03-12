@@ -60,7 +60,7 @@
   excludesFile = ~/.gitignore_global
   whitespace=tab-in-indent,cr-at-eol
   autocrlf = false
-  pager = delta --theme=Nord --24-bit-color=always
+  pager = delta --theme=Nord
 
 [web]
   browser = ff

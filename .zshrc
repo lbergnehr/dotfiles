@@ -46,6 +46,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/dotfiles/tmuxinator.zsh
 
 # Customize to your needs...
+export COLORTERM=truecolor
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
