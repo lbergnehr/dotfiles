@@ -370,6 +370,11 @@ tmux_conf_update_plugins_on_reload=true
 # /!\ do not add run '~/.tmux/plugins/tpm/tpm'
 
 set -g @plugin "arcticicestudio/nord-tmux"
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'tmux-plugins/tmux-fpp'
+set -g @plugin 'tmux-plugins/tmux-urlview'
+set -g @plugin 'laktak/extrakto'
+
 
 # to enable a plugin, use the 'set -g @plugin' syntax:
 # visit https://github.com/tmux-plugins for available plugins
