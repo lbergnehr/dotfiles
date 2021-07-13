@@ -7,14 +7,15 @@
 
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'elixir-lang/vim-elixir'
+Plug 'fcpg/vim-osc52' 
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
-Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-user'
 Plug 'mhinz/vim-mix-format'
 Plug 'mileszs/ack.vim'
@@ -311,10 +312,11 @@ runtime macros/matchit.vim
 nmap <leader>tn :wa!<cr>:TestNearest<cr>
 nmap <leader>tf :wa!<cr>:TestFile<cr>
 nmap <leader>tl :wa!<cr>:TestLast<cr>
+let test#strategy = 'neovim'
 
 let g:fugitive_gitlab_domains = ['https://gitlab.sectra.net']
 
-let g:ale_fixers = { 'elixir': ['mix_format'] }
+let g:ale_fixers = { 'elixir': ['mix_format'], 'ruby': ['rubocop'], 'sh': ['shfmt'] }
 let g:ale_linter_aliases = {'ps1': 'powershell'}
 let g:ale_powershell_psscriptanalyzer_executable = 'powershell.exe'
 
